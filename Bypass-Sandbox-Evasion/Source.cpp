@@ -48,8 +48,10 @@ int wmain() {
 		return -2;
 
 	while (i < (sizeof(lv2) / 8))
-		WriteProcessMemory(hw, (LPVOID)(0x00007FFB942C1AE0 + i), &lv2[i++], 1, 0);
-
+	{
+		if(!WriteProcessMemory(hw, (LPVOID)(0x00007FFB942C1AE0 + i), &lv2[i++], 1, 0))
+			return (-1);
+	}
 	system("pause");
 	return 0;
 }
